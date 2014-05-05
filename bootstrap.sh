@@ -7,7 +7,7 @@
 #Install git tools
 sudo yum install -y git-all
 #Clone the puppet-demo repo
-if [ ! -d "puppet-demo"];then
+if [ ! -d "puppet-demo" ];then
   git clone https://github.com/guru-beach/puppet-demo.git
 fi
 cd puppet-demo
