@@ -12,7 +12,7 @@ if [ ! -d "puppet-demo" ];then
 fi
 cd puppet-demo
 if [ ! -f "/etc/yum.repos.d/puppet-labs.repo" ]; then
-  cp puppet-labs.repo /etc/yum.repos.d/
+  sudo cp puppet-labs.repo /etc/yum.repos.d/
 fi
 sudo yum install -y puppet hiera facter
 
