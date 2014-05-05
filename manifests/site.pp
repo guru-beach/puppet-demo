@@ -1,10 +1,13 @@
 node default {
   # Defining variables used here, could be in hiera, but this is a pretty simple config
-  $www_user = 'www'
-  $www_group = 'www'
-  $www_id = '1000'
-  $challenge_root = '/var/www/challenge'
+  $www_user           = 'www'
+  $www_group          = 'www'
+  $www_id             = '1000'
+  $www_root           = '/var/www'
+  $challenge_name     = 'challenge'
+  $challenge_root     = "${www_root}/${challenge_name}"
   $challenge_checkout = 'https://github.com/puppetlabs/exercise-webpage'
+  $challenge_port     = '8000'
  
   #User and group probably aren't necessary, but it's not necessarily a bad idea
   group { "${www_group}":
@@ -42,10 +45,10 @@ node default {
   }
 
   include nginx
-  nginx::resource::vhost { 'challenge' :
+  nginx::resource::vhost { "${challenge_name}":
     ensure      => present,
     www_root    => "${challenge_root}",
-    listen_port => '8000',
+    listen_port => "${challenge_port}",
     require     => Vcsrepo["${challenge_root}"],
   }
 }
