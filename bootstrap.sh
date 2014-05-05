@@ -4,9 +4,9 @@
 #          This will install all resources in a users home directory
 # AUTHORS: Jake Lundberg <code@guru-beach.com>
 
-#Install git tools
+# Install git tools
 sudo yum install -y git-all
-#Clone the puppet-demo repo
+# Clone the puppet-demo repo
 if [ ! -d "puppet-demo" ];then
   git clone https://github.com/guru-beach/puppet-demo.git
 fi
@@ -16,6 +16,8 @@ if [ ! -f "/etc/yum.repos.d/puppet-labs.repo" ]; then
 fi
 sudo yum install -y puppet hiera facter
 
+# Clone puppet-demo repo
+sudo puppet apply manifests/site.pp --modulepath=${PWD}/modules
 
-#Clone puppet-demo repo
-sudo puppet apply manifests/site.pp
+# And now the moment you've all been waiting for
+curl http://localhost:8000/
